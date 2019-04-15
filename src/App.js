@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import get from 'lodash.get';
 import Form from 'react-bootstrap/Form';
 import React, { Component } from 'react';
+import sortBy from 'lodash.sortby';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './App.css';
 import "react-tabs/style/react-tabs.css";
@@ -45,10 +46,11 @@ class App extends Component {
   }
 
   generateOutput(input, sort) {
-    return input
+    const unsorted = input
       .split('\n')
-      .map(tryParse)
-      .sort((a, b) => get(a, sort, '') - get(b, sort, ''));
+      .map(tryParse);
+
+    return sortBy(unsorted, [sort]);
   }
 
   generateTabheader(o, header, i) {
