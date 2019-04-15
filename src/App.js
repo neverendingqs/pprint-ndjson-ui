@@ -77,9 +77,10 @@ class App extends Component {
   }
 
   onReset() {
-    const output = this.generateOutput(this.state.input, defaultSort);
+    const output = this.generateOutput(defaultInput, defaultSort);
     this.setState({
       header: defaultHeader,
+      input: defaultInput,
       output,
       sort: defaultSort,
       tabs: this.generateTabs(output, defaultHeader)
