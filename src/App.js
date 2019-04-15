@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 import get from 'lodash.get';
 import Form from 'react-bootstrap/Form';
 import React, { Component } from 'react';
@@ -5,10 +6,16 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './App.css';
 import "react-tabs/style/react-tabs.css";
 
+const localStorageKeyPrefix = 'pprint-json-4ccc828b-b372-4274-ab19-c6dd1055e856';
+const localStorageHeaderKey = `${localStorageKeyPrefix}-header`;
+const localStorageSortKey = `${localStorageKeyPrefix}-sort`;
+
+const defaultHeader = 'metadata.type';
+const defaultSort = 'metadata.time';
 const defaultInput = [
-  { metadata: { time: 123, type: 'a', previous_time: 234 }, value: 'a_value' },
   { metadata: { time: 125, type: 'c', previous_time: 235 }, value: 'c_value' },
-  { metadata: { time: 124, type: 'b', previous_time: 236 }, value: 'b_value' }
+  { metadata: { time: 124, type: 'b', previous_time: 236 }, value: 'b_value' },
+  { metadata: { time: 123, type: 'a', previous_time: 234 }, value: 'a_value' }
 ].map(JSON.stringify).join('\n');
 
 function tryParse(s) {
@@ -23,8 +30,8 @@ class App extends Component {
   constructor() {
     super();
 
-    const header = 'metadata.type';
-    const sort = 'metadata.time';
+    const header = localStorage.getItem(localStorageHeaderKey) || defaultHeader;
+    const sort = localStorage.getItem(localStorageSortKey) || defaultSort;
 
     const output = this.generateOutput(defaultInput, sort);
 
@@ -44,8 +51,8 @@ class App extends Component {
       .sort((a, b) => get(a, sort, '') - get(b, sort, ''));
   }
 
-  generateTabheader(o, header) {
-    const tabHeader = get(o, header, 'undefined');
+  generateTabheader(o, header, i) {
+    const tabHeader = `${get(o, header, 'undefined')} (${i})`;
     const tabHeaderType = typeof tabHeader;
     if (tabHeaderType === 'string') {
       return tabHeader
@@ -58,7 +65,7 @@ class App extends Component {
     return <Tabs>
       <TabList>
         {output.map((o, i) =>
-          <Tab key={i}>{this.generateTabheader(o, header)}</Tab>)
+          <Tab key={i}>{this.generateTabheader(o, header, i)}</Tab>)
         }
       </TabList>
       {output.map((o, i) =>
@@ -67,6 +74,19 @@ class App extends Component {
         </TabPanel>
       )}
     </Tabs>;
+  }
+
+  onReset() {
+    const output = this.generateOutput(this.state.input, defaultSort);
+    this.setState({
+      header: defaultHeader,
+      output,
+      sort: defaultSort,
+      tabs: this.generateTabs(output, defaultHeader)
+    });
+
+    localStorage.removeItem(localStorageHeaderKey);
+    localStorage.removeItem(localStorageSortKey);
   }
 
   onHeaderChange(e) {
@@ -78,6 +98,8 @@ class App extends Component {
       output,
       tabs: this.generateTabs(output, header)
     });
+
+    localStorage.setItem(localStorageHeaderKey, header);
   }
 
   onSortChange(e) {
@@ -89,12 +111,14 @@ class App extends Component {
       sort,
       tabs: this.generateTabs(output, this.state.header)
     });
+
+    localStorage.setItem(localStorageSortKey, sort);
   }
 
   onInputChange(e) {
     e.preventDefault();
     const input = e.target.value;
-    const output = this.generateOutput(input);
+    const output = this.generateOutput(input, this.state.sort);
     this.setState({
       input,
       output,
@@ -111,14 +135,14 @@ class App extends Component {
             <Form.Label>Tab Header</Form.Label>
             <Form.Control
               type="input"
-              defaultValue={this.state.header}
+              value={this.state.header}
               onChange={e => this.onHeaderChange(e)}
             />
 
             <Form.Label>Sort By</Form.Label>
             <Form.Control
               type="input"
-              defaultValue={this.state.sort}
+              value={this.state.sort}
               onChange={e => this.onSortChange(e)}
             />
           </Form.Group>
@@ -126,11 +150,16 @@ class App extends Component {
             <Form.Control
               as="textarea"
               rows="10"
-              defaultValue={this.state.input}
+              value={this.state.input}
               onChange={e => this.onInputChange(e)}
             />
           </Form.Group>
         </Form>
+        <Button
+          variant="danger"
+          onClick={() => this.onReset()}
+        >Reset</Button>
+        <hr />
         {this.state.tabs}
       </div>
     );
