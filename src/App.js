@@ -153,6 +153,7 @@ class App extends Component {
             <Form.Control
               as="textarea"
               rows="10"
+              wrap="soft"
               value={this.state.input}
               onChange={e => this.onInputChange(e)}
             />
