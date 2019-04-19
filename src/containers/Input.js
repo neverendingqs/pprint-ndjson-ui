@@ -9,7 +9,7 @@ import { updateInput } from '../actions';
 class Input extends Component {
   updateInput(e) {
     e.preventDefault();
-    this.props.updateInput(e.target.value);
+    this.props.updateInput(e.target.value.trim());
   }
 
   render() {
@@ -19,7 +19,7 @@ class Input extends Component {
           as="textarea"
           rows="10"
           wrap="off"
-          value={this.props.input}
+          defaultValue={this.props.input}
           onChange={e => this.updateInput(e)}
         />
       </Form.Group>
