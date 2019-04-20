@@ -1,4 +1,4 @@
-const keyPrefix = 'pprint-json-4ccc828b-b372-4274-ab19-c6dd1055e856';
+const keyPrefix = 'pprint-ndjson-4ccc828b-b372-4274-ab19-c6dd1055e856';
 const headerKey = `${keyPrefix}-header`;
 const sortKey = `${keyPrefix}-sort`;
 

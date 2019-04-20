@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Pretty-Print JSON</h1>
+        <h1>Pretty-Print Newline-Delimited JSON</h1>
         <Form>
           <Configs />
           <Input />
