@@ -24,7 +24,7 @@ class Input extends Component {
           onChange={e => this.updateInput(e)}
         />
         <Form.Text className="text-muted">
-          Must be newline-delimited JSON as defined by <a href="http://ndjson.org/"  target="_blank" rel="noopener noreferrer">http://ndjson.org/</a>.
+          Must be newline-delimited JSON as defined by <a href="http://ndjson.org/"  target="_blank" rel="noopener noreferrer">http://ndjson.org/</a> or <a href="http://jsonlines.org/" target="_blank" rel="noopener noreferrer">http://jsonlines.org/</a>.
         </Form.Text>
       </Form.Group>
     );
