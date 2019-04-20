@@ -15,6 +15,7 @@ class Input extends Component {
   render() {
     return (
       <Form.Group controlId="jsonInputGroup">
+        <Form.Label>Input</Form.Label>
         <Form.Control
           as="textarea"
           rows="10"
@@ -22,6 +23,9 @@ class Input extends Component {
           defaultValue={this.props.input}
           onChange={e => this.updateInput(e)}
         />
+        <Form.Text className="text-muted">
+          Must be newline-delimited JSON as defined by <a href="http://ndjson.org/"  target="_blank" rel="noopener noreferrer">http://ndjson.org/</a>.
+        </Form.Text>
       </Form.Group>
     );
   }

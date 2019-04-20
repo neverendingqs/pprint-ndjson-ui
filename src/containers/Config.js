@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 import { updateHeader, updateSort } from '../actions';
 
@@ -19,21 +21,37 @@ class Config extends Component {
 
   render() {
     return (
-      <Form.Group controlId="metadataGroup">
-        <Form.Label>Tab Header</Form.Label>
-        <Form.Control
-          type="input"
-          defaultValue={this.props.header}
-          onChange={e => this.updateHeader(e)}
-        />
+      <div>
+        <Row>
+          <Col>
+            <Form.Group controlId="headerGroup">
+              <Form.Label>Tab Header</Form.Label>
+              <Form.Control
+                type="input"
+                defaultValue={this.props.header}
+                onChange={e => this.updateHeader(e)}
+              />
+              <Form.Text className="text-muted">
+                Path of the property to display as the tab header.
+              </Form.Text>
+            </Form.Group>
+          </Col>
 
-        <Form.Label>Sort By</Form.Label>
-        <Form.Control
-          type="input"
-          defaultValue={this.props.sort}
-          onChange={e => this.updateSort(e)}
-        />
-      </Form.Group>
+          <Col>
+            <Form.Group controlId="sortGroup">
+              <Form.Label>Sort By</Form.Label>
+              <Form.Control
+                type="input"
+                defaultValue={this.props.sort}
+                onChange={e => this.updateSort(e)}
+              />
+              <Form.Text className="text-muted">
+                Path of the property to sort by.
+              </Form.Text>
+            </Form.Group>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
