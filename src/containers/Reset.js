@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Button from 'react-bootstrap/Button';
+
+import { reset } from '../actions';
 
 class Reset extends Component {
   onClick(e) {
@@ -19,4 +23,7 @@ class Reset extends Component {
   }
 }
 
-export default Reset;
+const mapDispatchToProps = dispatch => bindActionCreators({ reset }, dispatch);
+
+const connector = connect(null, mapDispatchToProps);
+export default connector(Reset);
