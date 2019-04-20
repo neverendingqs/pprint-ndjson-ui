@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import { reset } from '../actions';
-import Config from './Config';
+import Configs from './Configs';
 import Input from './Input';
 import Tabs from './Tabs';
 
@@ -16,7 +16,7 @@ class App extends Component {
       <div className="App">
         <h1>Pretty-Print JSON</h1>
         <Form>
-          <Config />
+          <Configs />
           <Input />
         </Form>
         <Button
