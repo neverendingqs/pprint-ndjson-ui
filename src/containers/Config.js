@@ -9,12 +9,12 @@ import { updateHeader, updateSort } from '../actions';
 class Config extends Component {
   updateHeader(e) {
     e.preventDefault();
-    this.props.updateHeader(e.target.value);
+    this.props.updateHeader(e.target.value.trim());
   }
 
   updateSort(e) {
     e.preventDefault();
-    this.props.updateSort(e.target.value);
+    this.props.updateSort(e.target.value.trim());
   }
 
   render() {
@@ -23,14 +23,14 @@ class Config extends Component {
         <Form.Label>Tab Header</Form.Label>
         <Form.Control
           type="input"
-          value={this.props.header}
+          defaultValue={this.props.header}
           onChange={e => this.updateHeader(e)}
         />
 
         <Form.Label>Sort By</Form.Label>
         <Form.Control
           type="input"
-          value={this.props.sort}
+          defaultValue={this.props.sort}
           onChange={e => this.updateSort(e)}
         />
       </Form.Group>
