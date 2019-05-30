@@ -6,6 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 
 import get from 'lodash.get';
 
+import Output from '../components/Output';
 import { outputSelector } from '../selectors';
 
 function generateTabheader(o, header, i) {
@@ -26,7 +27,7 @@ const component = ({ header, output }) =>
     </TabList>
     {output.map((o, i) =>
       <TabPanel key={i}>
-        <pre key={i}>{JSON.stringify(o, null, 2)}</pre>
+        <Output text={JSON.stringify(o, null, 2)} />
       </TabPanel>
     )}
   </Tabs>;
