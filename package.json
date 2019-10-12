@@ -7,13 +7,13 @@
     "copy-to-clipboard": "^3.2.0",
     "lodash.get": "^4.4.2",
     "lodash.sortby": "^4.7.0",
-    "react": "^16.8.6",
+    "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.8",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.0.2",
-    "react-scripts": "^3.0.1",
+    "react-dom": "^16.10.2",
+    "react-redux": "^7.1.1",
+    "react-scripts": "^3.2.0",
     "react-tabs": "^3.0.0",
-    "redux": "^4.0.1",
+    "redux": "^4.0.4",
     "reselect": "^4.0.0"
   },
   "scripts": {
