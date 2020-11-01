@@ -3,7 +3,7 @@ import { getSort, setSort, unsetSort } from '../lib/localStorage';
 
 const defaultSort = 'metadata.time';
 
-export default (state = undefined, action) => {
+const reducer = (state = undefined, action) => {
   switch (action.type) {
     case RESET:
       unsetSort()
@@ -15,3 +15,5 @@ export default (state = undefined, action) => {
       return state || getSort() || defaultSort;
   }
 };
+
+export default reducer;
