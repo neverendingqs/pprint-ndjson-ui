@@ -6,7 +6,7 @@ const defaultInput = [
   { metadata: { time: 123, type: 'a', previous_time: 234 }, value: 'a_value' }
 ].map(JSON.stringify).join('\n');
 
-export default (state = undefined, action) => {
+const reducer = (state = undefined, action) => {
   switch (action.type) {
     case RESET:
       return defaultInput;
@@ -16,3 +16,5 @@ export default (state = undefined, action) => {
       return state || defaultInput;
   }
 };
+
+export default reducer;

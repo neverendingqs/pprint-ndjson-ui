@@ -2,8 +2,7 @@ import { RESET, UPDATE_HEADER } from '../actions';
 import { getHeader, setHeader, unsetHeader } from '../lib/localStorage';
 
 const defaultHeader = 'metadata.type';
-
-export default (state = undefined, action) => {
+const reducer = (state = undefined, action) => {
   switch (action.type) {
     case RESET:
       unsetHeader();
@@ -15,3 +14,5 @@ export default (state = undefined, action) => {
       return state || getHeader() || defaultHeader;
   }
 };
+
+export default reducer;
