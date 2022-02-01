@@ -8,7 +8,7 @@
     "lodash.get": "^4.4.2",
     "lodash.sortby": "^4.7.0",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.1.0",
+    "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-scripts": "^5.0.0",
